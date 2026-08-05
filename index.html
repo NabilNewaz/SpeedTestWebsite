@@ -1489,13 +1489,23 @@
         </symbol>
 
         <symbol id="downResultC1" viewBox="0 0 53.35 39.8">
-          <text id="downResult" transform="translate(26.675 20.07)" class="rtextnum">---</text>
-          <text x="26.675" y="35" class="rtextmbms">Mbps</text>
+          <text transform="translate(10 20.07)" class="rtextnum-start">---</text>
+          <text transform="translate(10 35)" class="rtextmbms-start">Mbps</text>
         </symbol>
 
         <symbol id="upResultC2" viewBox="0 0 53.35 39.8">
-          <text id="upRestxt" transform="translate(26.675 20.07)" class="rtextnum">---</text>
-          <text x="26.675" y="36.09" class="rtextmbms">Mbps</text>
+          <text transform="translate(10 20.07)" class="rtextnum-start">---</text>
+          <text transform="translate(10 36.09)" class="rtextmbms-start">Mbps</text>
+        </symbol>
+
+        <symbol id="downResultC1Mob" viewBox="0 0 53.35 39.8">
+          <text id="downResultMob" transform="translate(26.675 20.07)" class="rtextnum">---</text>
+          <text transform="translate(26.675 35)" class="rtextmbms">Mbps</text>
+        </symbol>
+
+        <symbol id="upResultC2Mob" viewBox="0 0 53.35 39.8">
+          <text id="upRestxtMob" transform="translate(26.675 20.07)" class="rtextnum">---</text>
+          <text transform="translate(26.675 36.09)" class="rtextmbms">Mbps</text>
         </symbol>
 
         <symbol id="pingResultC3" viewBox="0 0 40.01 39.79">
@@ -1666,12 +1676,10 @@
               <use xlink:href="#graphc1" x="427.84" y="35" width="200" height="135">
                 <title id="title1">Shows you real-time network traffic graph for Download!</title>
               </use>
-              <use xlink:href="#downResultC1" x="298" y="67.21" width="200" height="45.1">
-                <title id="title1">Your download speed!</title>
-              </use>
-              <use xlink:href="#upResultC2" x="298" y="162.13" width="200" height="45.1">
-                <title id="title1">Your upload speed!</title>
-              </use>
+              <text id="downResult" x="335" y="90" class="rtextnum-start" style="font-size:26px">---</text>
+              <text x="335" y="108" class="rtextmbms-start" style="font-size:13px">Mbps</text>
+              <text id="upRestxt" x="335" y="185" class="rtextnum-start" style="font-size:26px">---</text>
+              <text x="335" y="203" class="rtextmbms-start" style="font-size:13px">Mbps</text>
               <use xlink:href="#pingResultC3" x="303.73" y="261.55" width="200" height="45.1">
                 <title id="title1">Your ping!</title>
               </use>
@@ -1713,12 +1721,10 @@
               <use xlink:href="#graphc1" x="427.84" y="35" width="200" height="135">
                 <title id="title1">Shows you real-time network traffic graph for Download!</title>
               </use>
-              <use xlink:href="#downResultC1" x="298" y="67.21" width="200" height="45.1">
-                <title id="title1">Your download speed!</title>
-              </use>
-              <use xlink:href="#upResultC2" x="298" y="162.13" width="200" height="45.1">
-                <title id="title1">Your upload speed!</title>
-              </use>
+              <text x="335" y="90" class="rtextnum-start" style="font-size:26px">---</text>
+              <text x="335" y="108" class="rtextmbms-start" style="font-size:13px">Mbps</text>
+              <text x="335" y="185" class="rtextnum-start" style="font-size:26px">---</text>
+              <text x="335" y="203" class="rtextmbms-start" style="font-size:13px">Mbps</text>
               <use xlink:href="#pingResultC3" x="303.73" y="261.55" width="200" height="45.1">
                 <title id="title1">Your ping!</title>
               </use>
@@ -1805,10 +1811,10 @@
                 <title id="title1">Upload speed is measured in megabits per second (Mbps).</title>
               </use>
 
-              <use xlink:href="#downResultC1" x="6" y="324" width="139" height="40">
+              <use xlink:href="#downResultC1Mob" x="6" y="324" width="139" height="40">
                 <title id="title1">Your download speed!</title>
               </use>
-              <use xlink:href="#upResultC2" x="151" y="324" width="139" height="40">
+              <use xlink:href="#upResultC2Mob" x="151" y="324" width="139" height="40">
                 <title id="title1">Your upload speed!</title>
               </use>
               <use xlink:href="#jitterMob" x="6" y="376" width="284" height="48">
@@ -1885,6 +1891,15 @@
 
   <script src="app-2.5.1.js"></script>
   <script>
+    (function () {
+      var results = document.getElementById("resultsData");
+      if (!results) return;
+      results.addEventListener("click", function (e) {
+        if (results.getAttribute("href") || results.getAttributeNS("http://www.w3.org/1999/xlink", "href")) {
+          e.preventDefault();
+        }
+      });
+    })();
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(function (reg) { })
